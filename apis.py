@@ -1,0 +1,3 @@
+lang_smith ="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"
+google ="AIzaSyDeHH6332bAGqwnmRoFIjsjNnQG5P40KfY"
+voice = "sk_821c7bde451b6b2cd451360783e8d45f33ad859bd18a6034"
