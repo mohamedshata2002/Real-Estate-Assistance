@@ -5,6 +5,9 @@ from email.utils import formataddr
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from dotenv import dotenv_values
+
+config = dotenv_values(".env")
 
 # Email details
 # def mail(body):
@@ -17,9 +20,9 @@ from email.mime.multipart import MIMEMultipart
 #     server.sendmail(sender_email,receiver_email,body)
 def mail(name,body):
     sender_name = name
-    sender_email = "mohamed.shata452002@gmail.com"
-    receiver_email = "mohamed.shata2002@gmail.com"
-
+    sender_email = config["sender"]
+    receiver_email = config["receiver_email"]
+    
     # Create a MIMEText object to represent the email
     msg = MIMEMultipart()
     msg['From'] = f"{sender_name} <{sender_email}>"

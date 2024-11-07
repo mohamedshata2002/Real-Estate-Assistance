@@ -4,7 +4,7 @@ import torch
 from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 import os
 import torch
-from melo.api import TTS
+# from melo.api import TTS
 from playsound import playsound
 from time import sleep
 # Configuration
@@ -50,16 +50,21 @@ def record_audio():
 
     return b''.join(frames)
 
+import wave
+import os
+
 def save_audio(filename, audio_data):
     """Save the recorded audio to a file."""
-    import wave
+    # Ensure the directory exists
+    os.makedirs(os.path.dirname(filename), exist_ok=True)
+    
+    with wave.open(filename, 'wb') as wf:
+        wf.setnchannels(CHANNELS)
+        wf.setsampwidth(pyaudio.PyAudio().get_sample_size(FORMAT))
+        wf.setframerate(RATE)
+        wf.writeframes(audio_data)
 
-    wf = wave.open(filename, 'wb')
-    wf.setnchannels(CHANNELS)
-    wf.setsampwidth(pyaudio.PyAudio().get_sample_size(FORMAT))
-    wf.setframerate(RATE)
-    wf.writeframes(audio_data)
-    wf.close()
+    print(f"Audio saved as {filename}")
 
 # if __name__ == "__main__":
 #     audio_data = record_audio()
